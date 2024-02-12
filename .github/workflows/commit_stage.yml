@@ -25,10 +25,11 @@ jobs:
         pylint $(git ls-files '*.py')
     - name: checking
       if: ${{ steps.pylint.outcome != 'success' }}
-      uses: dudisamarel/reset-head@v1
-      with:
+      run: echo "hola"
+      #uses: dudisamarel/reset-head@v1
+      #with:
     # The name of the branch to reset.
-        branch-name: main
-    - name: Making unitesting
-      uses: xoviat/actions-pytest@0.1-alpha2
+    #    branch-name: main
+   # -# #name: Making unitesting
+      #uses: xoviat/actions-pytest@0.1-alpha2
   
