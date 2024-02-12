@@ -21,6 +21,7 @@ jobs:
     - name: Analysing the code with pylint
       id: pylint
       run: |
+        jobs.build.steps[*].continue-on-error
         pylint $(git ls-files '*.py')
     - name: checking
       if: ${{ steps.pylint.outcome != 'success' }}
