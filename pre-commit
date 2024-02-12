@@ -1,14 +1,26 @@
 #!/bin/sh
 # Pre commit for python 
+echo "Comenzando pre-commit para PYTHON"
+git diff --name-only --cached '*.py' | grep '*.py' 
+if [ $? -ne 0 ]
+then
+	echo "No se encontraron archivos .py"
+	echo "Saliendo del pre commit"
+	exit 0
+fi
 /usr/bin/env python3 -m pytest
 if [ $? -ne 0 ]
 then
+	echo "Los testeos unitarios NO pasaron por completo. Evita commitear en este estado."
 	exit 1
 fi
 /usr/bin/env python3 -m pylint $(git diff --name-only --cached '*.py')
 if [ $? -eq 8 ]
 then
+	echo "El linter NO paso exitosamente."
 	exit 0
+else
+	echo "EL linter fue EXITOSO. Sigue el commit..."
 fi
 
 
