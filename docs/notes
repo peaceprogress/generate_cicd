@@ -1,0 +1,8 @@
+# Notes
+
+Sobre #TDD: El hook de pre-commit debe permitir cuestiones de baja calidad del codigo, no errores. Permitibles incluyen:
+	0. Al menos los siguientes valores de pylint: 20, 4 y 16
+	1. Sugerencias de refactor
+	2. Sugerencias por estandares
+	3. Sugerencias de warnings
+Sin embargo SI deberia mostrar esa informacion, para agilizar el diseño entre commits.
