@@ -23,7 +23,7 @@ jobs:
       run: |
         pylint $(git ls-files '*.py')
     - name: checking
-      if: ${{ steps.pylint.outcome == failure }}
+      if: ${{ steps.pylint.outcome != 'success' }}
       uses: dudisamarel/reset-head@v1
       with:
     # The name of the branch to reset.
