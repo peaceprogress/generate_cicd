@@ -32,4 +32,9 @@ jobs:
     #    branch-name: main
    # -# #name: Making unitesting
       #uses: xoviat/actions-pytest@0.1-alpha2
-  
+
+  publish:
+    if: "contains(github.event.head_commit.message, '[feat]')"
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "El commit es una feature"
