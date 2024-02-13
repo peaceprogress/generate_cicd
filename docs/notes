@@ -6,3 +6,6 @@ Sobre #TDD: El hook de pre-commit debe permitir cuestiones de baja calidad del c
 	2. Sugerencias por estandares
 	3. Sugerencias de warnings
 Sin embargo SI deberia mostrar esa informacion, para agilizar el diseño entre commits.
+Sobre #Entornos: El sistema de CI puede estar distribuido entre local y centralizado (o clientes y servidores del vcs usado). 
+Por eso, el sistema generaodr debe permitir la creacion de ambos. Tanto un pipe en cliente, probablemente usando hooks 
+para el pre commit, como la centralizacion de todo el pipeline en github.
