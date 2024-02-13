@@ -8,7 +8,7 @@ then
 	echo "Saliendo del pre commit"
 	exit 0
 fi
-/usr/bin/env python3 -m pytest
+/usr/bin/env python3 -m poetry run pytest
 if [ $? -ne 0 ]
 then
 	echo "Los testeos unitarios NO pasaron por completo. Evita commitear en este estado."
