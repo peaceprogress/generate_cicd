@@ -34,7 +34,12 @@ jobs:
       #uses: xoviat/actions-pytest@0.1-alpha2
 
   publish:
-    if: "contains(github.event.head_commit.message, '[feat]')"
     runs-on: ubuntu-latest
     steps:
-    - run: echo "El commit es una feature"
+    - name: Check Commit Type
+      uses: gsactions/commit-message-checker@v2
+      with:
+        pattern: '^feature'
+        flags: 'gm'
+        error: 'Your first line has to contain a commit type like "[BUGFIX]".'
+
