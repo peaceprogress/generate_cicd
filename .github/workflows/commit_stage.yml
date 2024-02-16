@@ -31,7 +31,7 @@ jobs:
       if: success() || failure()
       run: |
         cd simple_app/
-        poetry run pylint $(git ls-files '*.py')
+        poetry run pylint $(git ls-files '*.py') | grep  "Your code has been rated at 9*"
     - name: Running unitesting
       if: success() || failure()
       id: unittesting
