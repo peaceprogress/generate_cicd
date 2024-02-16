@@ -1,3 +1,11 @@
+# Notese que hay una previa configuracion de herramientas de prueba y yo las ejecuto desde el entorno declarado previamente
+# Buscar una mejor manera de hacer la logica que defina si ejecutar o no el pipe de integracion
+# La version de las librerias compatibles con el proyecto deberia declararse centralizadamente, leerse desde un fichero de config del proyecto y no escribirse en el pipe
+# TODO: Leer configuracion de dependencias para CI desde pyproject.toml
+# TODO: Usar el entorno (poetry) para ejecutar las pruebas
+# TODO: Ejecutar de manera lineal (no paralela) el work tanto de commit como de aceptacion
+# TODO: Instalar y configurar dependencias de testeo de manera global entre los trabajos
+#
 name: Pylint
 
 
@@ -15,15 +23,16 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint
+        pip install poetry
+        poetry install --with commit
     - name: Analysing the code with pylint
       id: pylint
       continue-on-error: true
       run: |
-        pylint $(git ls-files '*.py')
+        poetry run pylint $(git ls-files '*.py')
     - name: checking
       if: ${{ steps.pylint.outcome != 'success' }}
-      run: echo "hola"
+      run: echo "Hubo un error"
       #uses: dudisamarel/reset-head@v1
       #with:
     # The name of the branch to reset.
@@ -53,8 +62,5 @@ jobs:
         python -m pip install --upgrade pip
         pip install poetry
         cd simple_app/
-        poetry install
+        poetry install --with integration
         poetry run pytest -m integration
-# Notese que hay una previa configuracion de herramientas de prueba y yo las ejecuto desde el entorno declarado previamente
-# Buscar una mejor manera de hacer la logica que defina si ejecutar o no el pipe de integracion
-# La version de las librerias compatibles con el proyecto deberia declararse centralizadamente, leerse desde un fichero de config del proyecto y no escribirse en el pipe
