@@ -19,7 +19,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: 3.11 
-    - name: Install dependencies
+    - name: Installing dependencies
       run: |
         python -m pip install --upgrade pip
         pip install poetry
@@ -27,20 +27,19 @@ jobs:
         poetry install --with commit
     - name: Analysing the code with pylint
       id: pylint
-      continue-on-error: true
       run: |
         cd simple_app/
         poetry run pylint $(git ls-files '*.py')
     - name: Running unitesting
+      if: success() || failure()
       id: unittesting
-      continue-on-error: true
       run: |
         cd simple_app/
         poetry install --with commit
         poetry run pytest
-    - name: checking
-      if: ${{ steps.pylint.outcome != 'success' }}
-      run: echo "Hubo un error, por lo que se revertira el commit"
+    - name: Checking Job Status
+      if: ${{ steps.*.outcome != 'success'}}
+      run: echo "Hubo al menos un error, por lo que se revertira el commit"
   #TODO: dev should know its commit was reverted
   #TODO: Should NOT to run following job, ¿exit non0?
 
