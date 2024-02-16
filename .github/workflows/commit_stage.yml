@@ -27,6 +27,7 @@ jobs:
         poetry install --with commit
     - name: Analysing the code with pylint
       id: pylint
+      if: success() || failure()
       run: |
         cd simple_app/
         poetry run pylint $(git ls-files '*.py')
