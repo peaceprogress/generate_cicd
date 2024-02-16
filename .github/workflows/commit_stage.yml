@@ -43,6 +43,7 @@ jobs:
       with:
         pattern: '^feat'
         flags: 'gm'
+        error: "No messg"
     - name: Exec integration testing
       if: ${{ steps.checkft.outcome == 'success' }}
       run: |
