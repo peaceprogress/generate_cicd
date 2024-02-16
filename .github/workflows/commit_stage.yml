@@ -59,5 +59,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install poetry
         cd simple_app/
+        poetry install
         poetry run pytest -m integration
+# Notese que hay una previa configuracion de herramientas de prueba y yo las ejecuto desde el entorno declarado previamente
 # Buscar una mejor manera de hacer la logica que defina si ejecutar o no el pipe de integracion
