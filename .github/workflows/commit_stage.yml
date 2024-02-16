@@ -36,6 +36,9 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11" ]
     steps:
     - name: Check Commit Type
       id: checkft
@@ -43,11 +46,18 @@ jobs:
       with:
         pattern: '^feat'
         flags: 'gm'
-        error: "No messg"
-    - name: Exec integration testing
+        error: "No feat commit msg found"
+    - name: Check status
       if: ${{ steps.checkft.outcome == 'success' }}
+      uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Exec integration testing
       run: |
         python -m pip install --upgrade pip
         pip install poetry
         cd simple_app/
         poetry run pytest -m integration
+# Buscar una mejor manera de hacer la logica que defina si ejecutar o no el pipe de integracion
