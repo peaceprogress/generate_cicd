@@ -44,6 +44,6 @@ jobs:
         pattern: '^feat'
         flags: 'gm'
     - name: Exec integration testing
-      if: ${{ steps.checkft.outcome = 'success' }}
+      if: ${{ steps.checkft.outcome == 'success' }}
       run: |
         poetry run pytest -m integration
