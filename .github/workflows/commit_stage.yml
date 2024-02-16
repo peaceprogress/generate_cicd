@@ -3,8 +3,7 @@
 # La version de las librerias compatibles con el proyecto deberia declararse centralizadamente, leerse desde un fichero de config del proyecto y no escribirse en el pipe
 # TODO: Leer configuracion de dependencias para CI desde pyproject.toml
 # DONE: Usar el entorno (poetry) para ejecutar las pruebas
-# TODO: Ejecutar de manera lineal (no paralela) el work tanto de commit como de aceptacion
-# TODO: Instalar y configurar dependencias de testeo de manera global entre los trabajos
+# DONE: Ejecutar de manera lineal (no paralela) el work tanto de commit como de aceptacion
 #
 name: Pylint
 
