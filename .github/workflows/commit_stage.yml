@@ -4,6 +4,7 @@
 # TODO: Leer configuracion de dependencias para CI desde pyproject.toml
 # DONE: Usar el entorno (poetry) para ejecutar las pruebas
 # DONE: Ejecutar de manera lineal (no paralela) el work tanto de commit como de aceptacion
+# DONE: GH debe REVERTIR el estado del proyecto al ultimo commit si el entrante falla
 #
 name: Pylint
 
