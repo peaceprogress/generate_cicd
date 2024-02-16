@@ -31,15 +31,18 @@ jobs:
       run: |
         cd simple_app/
         poetry run pylint $(git ls-files '*.py')
+    - name: Running unitesting
+      id: unittesting
+      continue-on-error: true
+      run: |
+        cd simple_app/
+        poetry install --with commit
+        poetry run pytest
     - name: checking
       if: ${{ steps.pylint.outcome != 'success' }}
-      run: echo "Hubo un error"
-      #uses: dudisamarel/reset-head@v1
-      #with:
-    # The name of the branch to reset.
-    #    branch-name: main
-   # -# #name: Making unitesting
-      #uses: xoviat/actions-pytest@0.1-alpha2
+      run: echo "Hubo un error, por lo que se revertira el commit"
+  #TODO: dev should know its commit was reverted
+  #TODO: Should NOT to run following job, ¿exit non0?
 
   acceptance:
     needs: commit 
