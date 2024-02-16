@@ -2,7 +2,7 @@
 # Buscar una mejor manera de hacer la logica que defina si ejecutar o no el pipe de integracion
 # La version de las librerias compatibles con el proyecto deberia declararse centralizadamente, leerse desde un fichero de config del proyecto y no escribirse en el pipe
 # TODO: Leer configuracion de dependencias para CI desde pyproject.toml
-# TODO: Usar el entorno (poetry) para ejecutar las pruebas
+# DONE: Usar el entorno (poetry) para ejecutar las pruebas
 # TODO: Ejecutar de manera lineal (no paralela) el work tanto de commit como de aceptacion
 # TODO: Instalar y configurar dependencias de testeo de manera global entre los trabajos
 #
@@ -12,7 +12,7 @@ name: Pylint
 on: [push]
 
 jobs:
-  build:
+  commit:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -42,7 +42,8 @@ jobs:
    # -# #name: Making unitesting
       #uses: xoviat/actions-pytest@0.1-alpha2
 
-  publish:
+  acceptance:
+    needs: commit 
     runs-on: ubuntu-latest
     steps:
     - name: Check Commit Type
