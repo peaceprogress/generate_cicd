@@ -8,9 +8,18 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.group.commit]
+optional = true
+
+[tool.poetry.group.commit.dependencies]
 pytest = "^8.0.0"
 pylint = "^3.0.3"
+
+[tool.poetry.group.integration]
+optional = true
+
+[tool.poetry.group.integration.dependencies]
+pytest = "^8.0.0"
 
 [build-system]
 requires = ["poetry-core"]
