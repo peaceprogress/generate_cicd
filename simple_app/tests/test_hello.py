@@ -1,6 +1,6 @@
 """App unitesting for tdd"""
-from ..app import App
 import pytest
+from ..app import App
 
 def test_system_should_say_hello():
     """System should say hello to user"""
@@ -9,4 +9,5 @@ def test_system_should_say_hello():
 
 @pytest.mark.integration
 def test_integration_test():
+    """Integration test"""
     assert True
