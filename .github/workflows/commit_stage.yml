@@ -64,7 +64,7 @@ jobs:
           is-push-enabled: 'true'
 
   acceptance:
-    needs: auto-revert-commit
+    needs: commit
     runs-on: ubuntu-latest
     steps:
     - name: Check Commit Type
