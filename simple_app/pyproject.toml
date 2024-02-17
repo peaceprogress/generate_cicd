@@ -20,6 +20,7 @@ optional = true
 
 [tool.poetry.group.integration.dependencies]
 pytest = "^8.0.0"
+behave = "^1.2.6"
 
 [build-system]
 requires = ["poetry-core"]
