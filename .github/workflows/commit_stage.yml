@@ -42,11 +42,20 @@ jobs:
     - name: Checking Job Status
       if: ${{ steps.*.outcome != 'success'}}
       run: echo "Hubo al menos un error, por lo que se revertira el commit"
-  #TODO: dev should know its commit was reverted
-  #TODO: Should NOT to run following job, ¿exit non0?
+      
+  auto-revert-commit:
+    needs: commit
+    runs-on: ubuntu-latest
+    if: always() && (needs.commit.result == 'failure')
+    steps:
+      - name: Automatic Commit Revert
+        uses: 'tofu-apis/revert-commit-action@v0.0.37'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          is-push-enabled: 'true'
 
   acceptance:
-    needs: commit 
+    needs: auto-revert-commit
     runs-on: ubuntu-latest
     steps:
     - name: Check Commit Type
