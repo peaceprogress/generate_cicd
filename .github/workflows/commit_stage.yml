@@ -70,3 +70,7 @@ jobs:
         cd simple_app/
         poetry install --with integration
         poetry run pytest -m integration
+    - name: Exec bdd testing
+      run: |
+        cd simple_app/
+        poetry run behave
