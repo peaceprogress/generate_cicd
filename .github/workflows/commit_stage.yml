@@ -53,7 +53,7 @@ jobs:
       id: checkft
       uses: gsactions/commit-message-checker@v2
       with:
-        pattern: '^feat'
+        pattern: 'feat'
         flags: 'gm'
         error: "No feat commit msg found"
     - name: Check status
