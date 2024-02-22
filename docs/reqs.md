@@ -17,6 +17,15 @@ Como usuario, quiero poder especificar y usar diferentes ci vendors (como gh act
 1. Apertura (a utilizar en un futuro otros vendors, otros formatos de configuracion...)
 2. Informacion (necesito conocer todo lo posible lo antes posible)
 
+## Features
+
+- CI files-per-vendor generation
+	- Use Github actions as CI vendor
+- On-Demand Pipeline Generator
+	- Select what stages to include in
+	- Select what stage steps to include in
+	- Select Stage trigger setter
+
 ## Notes
 
 Sobre #TDD: El hook de pre-commit debe permitir cuestiones de baja calidad del codigo, no errores. Permitibles incluyen:
