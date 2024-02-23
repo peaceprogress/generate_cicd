@@ -19,6 +19,8 @@ permissions:
   actions: write
   
 
+# Para usar los valores de calidad de codigo usar contexto: env
+# Setear env var 'expected quality value' y hacer una evaluacion en bash de eso
 
 jobs:
   commit:
@@ -66,6 +68,7 @@ jobs:
   acceptance:
     needs: commit
     runs-on: ubuntu-latest
+    if: always() && (needs.commit.result == 'failure')
     steps:
     - name: Check Commit Type
       id: checkft
