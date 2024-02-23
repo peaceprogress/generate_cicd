@@ -68,7 +68,8 @@ jobs:
   acceptance:
     needs: commit
     runs-on: ubuntu-latest
-    if: always() && (needs.commit.result == 'failure')
+    # if: always() && (needs.commit.result == 'failure')
+    if: contains(${{ github.event.workflow_run.head_commit.message }}, 'feat:')
     steps:
     - name: Check Commit Type
       id: checkft
