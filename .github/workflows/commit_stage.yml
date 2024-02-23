@@ -5,7 +5,8 @@
 # DONE: Usar el entorno (poetry) para ejecutar las prueba
 # DONE: Ejecutar de manera lineal (no paralela) el work tanto de commit como de aceptacion
 # DONE: GH debe REVERTIR el estado del proyecto al ultimo commit si el entrante falla
-#
+# DONE: Node.js 16 actions are deprecated. 
+
 name: Pylint
 
 
@@ -26,9 +27,9 @@ jobs:
   commit:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up Python 3.11
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: 3.11 
     - name: Installing dependencies
@@ -80,9 +81,9 @@ jobs:
         error: "No feat commit msg found"
     - name: Check status
       if: ${{ steps.checkft.outcome == 'success' }}
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Set up Python 3.11
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: 3.11
     - name: Exec integration testing
